@@ -15,6 +15,12 @@
         nameGenerator:
           !type:NanotrasenNameGenerator
           prefixCreator: '14'
+      - type: SpawnGridAndDockToStation
+        grids:
+        - gridPath: /Maps/_Fish/Shuttles/mining.yml
+          priorityTag: DockMining
+        - gridPath: /Maps/_Fish/Shuttles/security.yml
+          priorityTag: DockSecurity
       - type: StationEmergencyShuttle
         emergencyShuttlePath: /Maps/_Fish/Shuttles/emergency_bagel.yml
       - type: StationJobs
