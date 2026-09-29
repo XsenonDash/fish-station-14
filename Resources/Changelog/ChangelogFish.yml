@@ -717,3 +717,14 @@
   url: https://github.com/makura-games/fish-station/pull/469
   media:
   - url: https://github.com/user-attachments/assets/d725c3e1-bb75-47d4-8f0e-8a66d3226313
+- author: TiFeRi
+  time: '2026-09-29T20:21:04.0000000+00:00'
+  changes:
+  - type: Tweak
+    message: Вместимость базового батарейного магазина ИК увеличена с 12 до 18 патронов, а большого магазина с 24 до 36 патронов.
+  - type: Tweak
+    message: Уменьшен урон выстрела картриджа ИК с 20 до 13.
+  - type: Tweak
+    message: Стёкла теперь блокируют выстрелы картриджа ИК.
+  id: 71
+  url: https://github.com/makura-games/fish-station/pull/479
