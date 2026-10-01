@@ -750,3 +750,13 @@
     message: У Нианов добавлена способность полета схожая с той, что у Милир.
   id: 73
   url: https://github.com/makura-games/fish-station/pull/481
+- author: Endennsss
+  time: '2026-10-01T20:57:54.0000000+00:00'
+  changes:
+  - type: Add
+    message: Новый UI хирургии
+  id: 74
+  url: https://github.com/makura-games/fish-station/pull/434
+  media:
+  - url: https://github.com/user-attachments/assets/1caaa3e4-8e52-401f-bf89-f3675ef81f23
+    description: image
