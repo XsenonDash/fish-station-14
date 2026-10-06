@@ -857,7 +857,7 @@ CratePartsT4: null
 
 # region Sunrise-Start
 AirlockExternalGlassShuttleArrivals: AirlockExternalGlassShuttleArrivalsLocked
-AirlockHatchSyndicate: AirlockHatchSyndicateLocked
+# AirlockHatchSyndicate: AirlockHatchSyndicateLocked # Fish-edit
 SurveillanceCameraWirelessRouterBase: SurveillanceCameraWirelessRouterConstructed
 CryogenicSleepUnitSpawner: CryogenicSleepUnitSpawnerLateJoin
 ComputerCargoShuttle: null
