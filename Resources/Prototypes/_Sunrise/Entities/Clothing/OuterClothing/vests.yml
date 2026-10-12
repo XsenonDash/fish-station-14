@@ -90,7 +90,7 @@
           Blunt: 0.60
           Slash: 0.60
           Piercing: 0.30
-          Heat: 0.10
+          Heat: 0.90
           Caustic: 0.80
           Shock: 0.80
     - type: StaminaResistance
