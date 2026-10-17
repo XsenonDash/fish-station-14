@@ -17,6 +17,10 @@
   - type: SpentAmmoVisuals
     revealSpent: true # Starlight
     tip: true
+  # Fish-Start
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+  # Fish-End
 
 - type: entity
   id: ShellShotgunBeanbag

@@ -22,6 +22,10 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 10
+  # Fish-Start
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+  # Fish-End
 
 - type: entity
   id: BaseCartridgeHeavyRifleR
