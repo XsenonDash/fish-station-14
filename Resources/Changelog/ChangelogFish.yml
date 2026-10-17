@@ -881,3 +881,10 @@
     message: Доработка нового шаттла лон-опера.
   id: 89
   url: https://github.com/makura-games/fish-station/pull/506
+- author: dan4ikk3
+  time: '2026-10-17T07:27:53.0000000+00:00'
+  changes:
+  - type: Tweak
+    message: Теперь ЛЦУ ОБР слышно только на мапе, где он был вызван.
+  id: 90
+  url: https://github.com/makura-games/fish-station/pull/508
