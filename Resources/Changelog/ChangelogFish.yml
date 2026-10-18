@@ -985,3 +985,12 @@
     description: изображение
   - url: https://github.com/user-attachments/assets/efbe42ca-34b8-45b7-a636-ab40c71f322a
     description: изображение
+- author: KrytoiChuvaaak
+  time: '2026-10-18T20:49:09.0000000+00:00'
+  changes:
+  - type: Tweak
+    message: Карапас капитана, белый/чёрный нагрудники и капитанская шинель теперь дают 25% сопротивления стамине (стандубинкам).
+  - type: Tweak
+    message: Зимняя куртка капитана стала бронированной (0.6/0.6/0.6 и 0.35 от термического урона) и даёт 25% сопротивления стамине.
+  id: 97
+  url: https://github.com/makura-games/fish-station/pull/517
