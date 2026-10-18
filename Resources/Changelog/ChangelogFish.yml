@@ -888,3 +888,10 @@
     message: Теперь ЛЦУ ОБР слышно только на мапе, где он был вызван.
   id: 90
   url: https://github.com/makura-games/fish-station/pull/508
+- author: KrytoiChuvaaak
+  time: '2026-10-18T09:31:35.0000000+00:00'
+  changes:
+  - type: Tweak
+    message: Ксено снова могут носить очки — экипировка на слот глаз отображается на спрайте.
+  id: 91
+  url: https://github.com/makura-games/fish-station/pull/515
