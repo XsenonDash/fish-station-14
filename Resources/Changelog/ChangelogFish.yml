@@ -918,3 +918,15 @@
     message: Голопроектор снова проницаем для РСУ и не разбивается предметами
   id: 92
   url: https://github.com/makura-games/fish-station/pull/510
+- author: Endennsss
+  time: '2026-10-18T16:28:00.0000000+00:00'
+  changes:
+  - type: Add
+    message: Новый блум
+  id: 93
+  url: https://github.com/makura-games/fish-station/pull/512
+  media:
+  - url: https://github.com/user-attachments/assets/6ba3379a-b5e0-48bb-aa6a-6468da53b508
+    description: изображение
+  - url: https://github.com/user-attachments/assets/e8025082-9cd0-42cc-a837-9ac4df3e2b5e
+    description: изображение
