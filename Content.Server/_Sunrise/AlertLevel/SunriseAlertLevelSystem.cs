@@ -19,21 +19,35 @@ public sealed partial class SunriseAlertLevelSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<SunriseAlertLevelChangedEvent>(OnAlertLevelChanged);
+        SubscribeLocalEvent<AdditionalAlertLevelChangedEvent>(OnAdditionalAlertLevelChanged);
     }
 
     private void OnAlertLevelChanged(ref SunriseAlertLevelChangedEvent args)
     {
-        if (!ProtoMan.Resolve(args.AlertLevel, out var alertLevel))
+        ApplySpecialAlertLevelBehavior(args.Station, args.AlertLevel);
+    }
+
+    private void OnAdditionalAlertLevelChanged(ref AdditionalAlertLevelChangedEvent args)
+    {
+        if (!args.Enabled)
+            return;
+
+        ApplySpecialAlertLevelBehavior(args.Station, args.AlertLevel);
+    }
+
+    private void ApplySpecialAlertLevelBehavior(EntityUid station, ProtoId<AlertLevelPrototype> level)
+    {
+        if (!ProtoMan.Resolve(level, out var alertLevel))
             return;
 
         if (alertLevel.ForceEndRound)
             _roundEnd.EndRound();
 
-        if (args.AlertLevel != EpsilonAlertLevel)
+        if (level != EpsilonAlertLevel)
             return;
 
         var rule = _gameTicker.AddGameRule(EpsilonBorgLawChanges);
-        EntityManager.System<EpsilonDeathSquadLawsetRule>().StartEvent(rule, args.Station);
+        EntityManager.System<EpsilonDeathSquadLawsetRule>().StartEvent(rule, station);
         _gameTicker.StartGameRule(rule);
     }
 }

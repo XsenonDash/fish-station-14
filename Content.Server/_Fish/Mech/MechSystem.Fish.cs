@@ -1,12 +1,29 @@
+using Content.Server._Fish.Mech;
 using Content.Shared.Access.Components;
+using Content.Shared.Access.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Mech.Components;
+using Content.Shared.Popups;
 using Content.Shared.Silicons.Borgs.Components;
 
 namespace Content.Server.Mech.Systems;
 
 public sealed partial class MechSystem
 {
+    [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private MechBrainCombatSystem _mechBrainCombat = default!;
+
+    private void InitializeFish()
+    {
+    }
+
+    private void RestoreFishBrainState(EntityUid pilot)
+    {
+        if (HasComp<MechBrainCombatComponent>(pilot))
+            _mechBrainCombat.RestoreBrainState(pilot);
+    }
+
     // Установка мозга и обычная посадка используют общие проверки, различающие актора и пилота.
     private bool HandleFishBrainInteraction(Entity<MechComponent> ent, InteractUsingEvent args)
     {
@@ -59,16 +76,6 @@ public sealed partial class MechSystem
         return true;
     }
 
-    private bool CanOfferFishMechEntry(Entity<MechComponent> ent, EntityUid actor, EntityUid? held)
-    {
-        if (HasComp<BorgBrainComponent>(actor))
-            return false;
-
-        return held is not { } brain ||
-               !HasComp<BorgBrainComponent>(brain) ||
-               !CanEnterMech(ent.AsNullable(), actor, brain);
-    }
-
     private bool CanAccessFishMech(EntityUid mech, EntityUid actor, AccessReaderComponent reader)
     {
         if (!reader.Enabled)
@@ -98,8 +105,8 @@ public sealed partial class MechSystem
         if (!TryInsert(ent, pilot, ent.Comp))
             return false;
 
-        _factionSystem.Up(pilot, ent);
-        _actionBlocker.UpdateCanMove(ent);
+        _faction.Up(pilot, ent);
+        Vehicle.RefreshCanRun(ent.Owner);
         return true;
     }
 }

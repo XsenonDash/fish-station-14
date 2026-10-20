@@ -289,7 +289,12 @@
   components:
   - type: Action
     useDelay: 5
-    icon: Interface/Actions/manifest.png
+    # Fish-start: перенос иконки в Sprite слой
+    # icon: Interface/Actions/manifest.png
+  - type: Sprite
+    layers:
+    - texture: Interface/Actions/manifest.png
+    # Fish-end
   - type: InstantAction
     event: !type:GuardianReturnActionEvent
     # Fish-end

@@ -155,7 +155,7 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
             // FIsh edit start - экипировка jobEntity через startingGear (Sunrise), не только Loadout MapInit
             if (prototype.StartingGear != null)
             {
-                var startingGear = _prototypeManager.Index(prototype.StartingGear.Value);
+                var startingGear = ProtoMan.Index(prototype.StartingGear.Value);
                 EquipStartingGear(jobEntity, startingGear, raiseEvent: true);
             }
 

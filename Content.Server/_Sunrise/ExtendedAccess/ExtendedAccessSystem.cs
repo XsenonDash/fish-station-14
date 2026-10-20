@@ -72,7 +72,7 @@ public sealed partial class ExtendedAccessSystem : EntitySystem
         if (!TryComp<AlertLevelComponent>(ev.Station, out var alert))
             return;
 
-        var primaryLevel = alert.CurrentLevel ?? AlertLevelSystem.DefaultAlertLevel;
+        var primaryLevel = alert.CurrentAlertLevel;
         var state = GetStationState(ev.Station, primaryLevel);
 
         // Отозванные временные доступы должны исчезать сразу, а не после задержки их выдачи.
@@ -161,7 +161,7 @@ public sealed partial class ExtendedAccessSystem : EntitySystem
         }
         else
         {
-            if (station.Comp.CurrentLevel != level)
+            if (station.Comp.CurrentAlertLevel != level)
                 return;
 
             state.PrimaryLevel = level;

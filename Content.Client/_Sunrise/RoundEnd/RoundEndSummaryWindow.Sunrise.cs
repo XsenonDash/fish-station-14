@@ -45,17 +45,22 @@ public sealed partial class RoundEndSummaryWindow
 
         AddStorytellerName(summaryTab, storytellerName);
 
-        var historyTab = MakeStorytellerHistoryTab(storytellerHistory);
-        tabs.AddChild(historyTab);
-        historyTab.SetPositionInParent(0);
+        var tabIndex = 0;
+        // Fish-edit: вкладка истории только если в раунде был рассказчик
+        if (!string.IsNullOrEmpty(storytellerName))
+        {
+            var historyTab = MakeStorytellerHistoryTab(storytellerHistory);
+            tabs.AddChild(historyTab);
+            historyTab.SetPositionInParent(tabIndex++);
+        }
 
         var statsTab = MakeRoundEndStatsTab(roundEndStats);
         tabs.AddChild(statsTab);
-        statsTab.SetPositionInParent(1);
+        statsTab.SetPositionInParent(tabIndex++);
 
         var personalStatsTab = MakeRoundEndMyStatsTab(statisticEntries);
         tabs.AddChild(personalStatsTab);
-        personalStatsTab.SetPositionInParent(2);
+        personalStatsTab.SetPositionInParent(tabIndex);
     }
 
     private static void AddStorytellerName(BoxContainer summaryTab, string? storytellerName)

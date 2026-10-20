@@ -158,7 +158,7 @@ public sealed partial class SiliconLawSystem : SharedSiliconLawSystem
                 EnsureSubvertedSiliconRole(mindId);
 
             // Fish-Edit start: broadcast для achievements
-            var fishLawEv = new FishAiLawChangedEvent(uid, "ion-storm");
+            var fishLawEv = new FishAiLawChangedEvent(ent, "ion-storm");
             RaiseLocalEvent(ref fishLawEv);
             // Fish-Edit end
         }

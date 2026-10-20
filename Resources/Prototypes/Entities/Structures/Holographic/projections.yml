@@ -184,12 +184,12 @@
   - type: Reflect
     reflectProb: 1
   - type: Climbable
-    # Fish-edit: возвращаем кликабельность, как было до апстрим-переноса.
-    - type: Clickable
-    # Fish-start - барьер по задумке «слабый», поэтому, в отличие от прочих голограмм, остаётся разрушаемым.
-    - type: Injurable
-      damageContainer: Inorganic
-    # Fish-end
+  # Fish-edit: возвращаем кликабельность, как было до апстрим-переноса.
+  - type: Clickable
+  # Fish-start - барьер по задумке «слабый», поэтому, в отличие от прочих голограмм, остаётся разрушаемым.
+  - type: Injurable
+    damageContainer: Inorganic
+  # Fish-end
 
 - type: entity
   parent: BaseHoloSign

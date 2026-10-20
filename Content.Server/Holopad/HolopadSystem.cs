@@ -44,8 +44,9 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
     [Dependency] private SharedPowerStateSystem _powerState = default!;
     [Dependency] private MetaDataSystem _meta = default!;
     [Dependency] private RemoteHolopadSystem _remoteHolopad = default!; // Fish-edit
-    private float _updateTimer = 1.0f;
-    private const float UpdateTime = 1.0f;
+    // Fish-edit: Поля больше не используются после обновления логики апдейта голопадов в upstream
+    // private float _updateTimer = 1.0f;
+    // private const float UpdateTime = 1.0f;
 
     public override void Initialize()
     {

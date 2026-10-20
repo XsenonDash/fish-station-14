@@ -11,10 +11,12 @@
 
     <!-- Controls for changing the alert level -->
     <BoxContainer Margin="9 12 9 6">
-        <OptionButton Name="AlertLevelSelector" StyleClasses="OpenRight"
+        <!-- Sunrise-Edit: открываем доступ к контролам селектора уровней тревоги для частичных классов меню -->
+        <OptionButton Name="AlertLevelSelector" Access="Public" StyleClasses="OpenRight"
             ToolTip="{Loc 'comms-console-menu-alert-level-button-tooltip'}"
             HorizontalExpand="True" SizeFlagsStretchRatio="4" />
-        <Button Name="ConfirmAlertLevelButton" StyleClasses="OpenLeft"
+        <!-- Sunrise-Edit: открываем доступ к кнопке подтверждения уровня тревоги -->
+        <Button Name="ConfirmAlertLevelButton" Access="Public" StyleClasses="OpenLeft"
             HorizontalExpand="True" SizeFlagsStretchRatio="1"
             Text="{Loc 'comms-console-confirm-alert-level-button'}"
             Disabled="True" />

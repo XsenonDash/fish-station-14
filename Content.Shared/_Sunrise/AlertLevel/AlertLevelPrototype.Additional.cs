@@ -1,7 +1,7 @@
 #pragma warning disable IDE0130 // Пространство имён соответствует расширяемому upstream-прототипу.
-namespace Content.Server.AlertLevel;
+namespace Content.Shared.AlertLevel;
 
-public sealed partial class AlertLevelDetail
+public sealed partial class AlertLevelPrototype
 {
     /// <summary>
     /// Whether this level is an additional protocol that can be active alongside the primary alert level.

@@ -58,7 +58,10 @@ public sealed partial class MechSystem
     private void OnSunriseVehicleExited(Entity<VehicleOperatorComponent> ent, ref OnVehicleExitedEvent args)
     {
         if (HasComp<MechComponent>(args.Vehicle))
+        {
             RemComp<NpcFactionMemberComponent>(args.Vehicle);
+            RestoreFishBrainState(ent.Owner); // Fish-edit: восстанавливаем боевой режим и движение мозга при выходе из меха
+        }
     }
 
     /// <summary>

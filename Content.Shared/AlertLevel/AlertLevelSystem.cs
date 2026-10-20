@@ -52,7 +52,10 @@ public sealed partial class AlertLevelSystem : EntitySystem
         if (!Resolve(station, ref station.Comp))
             return false;
 
-        return station.Comp.DelayedUntil == null && !station.Comp.IsLevelLocked;
+        // Sunrise edit start - проверка блокировки от дополнительных кодов
+        // return station.Comp.DelayedUntil == null && !station.Comp.IsLevelLocked;
+        return station.Comp.DelayedUntil == null && IsSelectable(station);
+        // Sunrise edit end
     }
 
     /// <summary>
@@ -136,11 +139,22 @@ public sealed partial class AlertLevelSystem : EntitySystem
         if (!Resolve(station, ref station.Comp))
             return;
 
-        if (station.Comp.CurrentAlertLevel == level)
-            return;
+        // Sunrise edit start - дополнительные коды не заменяют основной
+        // if (station.Comp.CurrentAlertLevel == level)
+        //     return;
 
         if (!_prototype.Resolve(level, out var prototype))
             return;
+
+        if (prototype.IsAdditional)
+        {
+            TrySetAdditionalLevel(station, level, true, playSound, announce, force);
+            return;
+        }
+
+        if (station.Comp.CurrentAlertLevel == level)
+            return;
+        // Sunrise edit end
 
         var previousLevel = station.Comp.CurrentAlertLevel; // Sunrise-Edit - передаём предыдущий уровень Sunrise-системам
 

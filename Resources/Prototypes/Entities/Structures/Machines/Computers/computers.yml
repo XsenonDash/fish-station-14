@@ -983,7 +983,7 @@
     color: "#1d8bad"
     canShuttle: false
     global: true
-    allowedAlertLevels: [green, blue, violet, yellow, red, gamma, delta] # Sunrise-Edit
+    allowedAlertLevels: [Green, Blue, Violet, Yellow, Red, Gamma, DeltaNuke] # Sunrise-Edit
     forceAlertLevelChanges: true # Sunrise-Edit
     canSelectAlertStation: true # Sunrise-Edit
   - type: Computer

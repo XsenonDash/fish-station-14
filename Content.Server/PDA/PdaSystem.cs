@@ -378,6 +378,7 @@ namespace Content.Server.PDA
             if (!TryComp(station, out AlertLevelComponent? alertComp))
                 return;
             pda.StationAlertLevel = alertComp.CurrentAlertLevel;
+            UpdateAdditionalAlertLevels((uid, pda), (station!.Value, alertComp)); // Sunrise-Edit
             if (_prototype.Resolve(alertComp.CurrentAlertLevel, out var level))
                 pda.StationAlertColor = level.Color;
         }

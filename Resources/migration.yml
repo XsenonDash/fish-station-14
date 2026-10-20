@@ -1606,6 +1606,9 @@ WindoorAssemblySecure: WindoorAssembly
 WindoorAssemblySecurePlasma: WindoorAssemblyPlasma
 WindoorAssemblySecureUranium: WindoorAssemblyUranium
 LightReplacer: LightReplacerFilled
+LightReplacerEmpty: LightReplacer # Fish-edit: миграция устаревшего LightReplacerEmpty
+MagicalLamp: GuardianDeck # Fish-edit: миграция устаревшего MagicalLamp
+WehMedipen: WehMedipenTiny # Fish-edit: миграция WehMedipen на не-DoNotMap вариант
 
 #2026-08-14
 MeteorRock: AsteroidRock

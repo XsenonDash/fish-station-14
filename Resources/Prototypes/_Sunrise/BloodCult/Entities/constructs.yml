@@ -67,8 +67,12 @@
         - DoorBumpOpener
     - type: CultMember
     - type: SunriseDamagePopup
-    - type: ToggleableNightVision # Fish-edit
-      effect: EffectNightVisionSyndie
+    # Fish-start: использование NightVision вместо некорректного FishNightVision
+    - type: NightVision
+      enabled: false
+      action: ActionToggleNightVision
+      lightingColor: '#D61B1B26'
+    # Fish-end
     - type: TTS
       voice: dragon_knight_dragon_dota_2
 
@@ -108,6 +112,7 @@
       showInHands: true
     - type: ContainerContainer
       containers:
+        actions: !type:Container
         body_organs: !type:Container
     - type: Juggernaut
     - type: TTS

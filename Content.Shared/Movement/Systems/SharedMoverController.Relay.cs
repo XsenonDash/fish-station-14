@@ -8,6 +8,8 @@ public abstract partial class SharedMoverController
     private void InitializeRelay()
     {
         SubscribeLocalEvent<RelayInputMoverComponent, ComponentShutdown>(OnRelayShutdown);
+        // Fish-edit: обновляем возможность движения после полного удаления компонента с сущности
+        SubscribeLocalEvent<RelayInputMoverComponent, ComponentRemove>(OnRelayRemove);
         SubscribeLocalEvent<MovementRelayTargetComponent, ComponentShutdown>(OnTargetRelayShutdown);
         SubscribeLocalEvent<MovementRelayTargetComponent, AfterAutoHandleStateEvent>(OnAfterRelayTargetState);
         SubscribeLocalEvent<RelayInputMoverComponent, AfterAutoHandleStateEvent>(OnAfterRelayState);
@@ -144,6 +146,13 @@ public abstract partial class SharedMoverController
         _blocker.UpdateCanMove(entity.Owner);
         RaiseEffectiveMoverChanged(entity.Owner, oldEffectiveMover, entity.Owner);
     }
+
+    // Fish-start - после полного удаления релея с сущности гарантируем обновление статуса движения
+    private void OnRelayRemove(Entity<RelayInputMoverComponent> entity, ref ComponentRemove args)
+    {
+        _blocker.UpdateCanMove(entity.Owner);
+    }
+    // Fish-end
 
     protected virtual void OnTargetRelayShutdown(Entity<MovementRelayTargetComponent> entity, ref ComponentShutdown args)
     {

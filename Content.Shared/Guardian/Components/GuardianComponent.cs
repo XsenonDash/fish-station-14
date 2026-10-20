@@ -64,4 +64,12 @@ public sealed partial class GuardianComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan AttackPopupDelay = TimeSpan.FromSeconds(1);
+
+    // Fish-Edit start - блокировка взаимодействий стенда за пределами радиуса хозяина
+    /// <summary>
+    /// If true, the guardian is too far from the host and cannot interact.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool DisableInteraction;
+    // Fish-Edit end
 }

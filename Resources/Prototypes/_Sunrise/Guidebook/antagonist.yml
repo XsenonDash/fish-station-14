@@ -1,9 +1,9 @@
 - type: guideEntry
-- type: guideEntry
   id: Disease
   name: guide-entry-disease
   text: "/ServerInfo/Guidebook/_Sunrise/Antagonist/Disease.xml"
 
+- type: guideEntry
   id: FleshCult
   name: guide-entry-flesh-cult
   text: "/ServerInfo/Guidebook/_Sunrise/Antagonist/FleshCult.xml"

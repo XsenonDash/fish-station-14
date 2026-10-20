@@ -1,6 +1,7 @@
 // Fish-start
 using Content.Shared.Mind;
 using Content.Shared.Ghost;
+using Content.Shared.Ghost.Components;
 // Fish-end
 using System.Linq;
 using System.Numerics;

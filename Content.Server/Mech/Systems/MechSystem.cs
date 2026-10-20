@@ -42,6 +42,7 @@ public sealed partial class MechSystem : SharedMechSystem
     {
         base.Initialize();
         InitializeSunrise(); // Sunrise-Edit - регистрируем серверные расширения мехов
+        InitializeFish(); // Fish-edit - регистрируем серверные расширения мехов Fish
     }
 
     [SubscribeLocalEvent]

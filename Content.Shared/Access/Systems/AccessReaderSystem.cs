@@ -980,7 +980,10 @@ public sealed partial class AccessReaderSystem : EntitySystem
     public void UpdateAccess(Entity<AccessReaderComponent> ent, string currentLevel)
     {
         ent.Comp.AdditionalGroups.Clear();
-        if (ent.Comp.AlertAccesses.TryGetValue(currentLevel, out var value))
+        // Sunrise-Edit start - поддержка регистронезависимого сопоставления уровня тревоги
+        // if (ent.Comp.AlertAccesses.TryGetValue(currentLevel, out var value))
+        if (TryGetAlertAccessGroup(ent.Comp, currentLevel, out var value))
+        // Sunrise-Edit end
             ent.Comp.Group = value;
         else
             ent.Comp.Group = null;

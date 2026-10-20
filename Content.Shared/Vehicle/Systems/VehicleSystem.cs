@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Access.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Damage;
@@ -314,6 +314,14 @@ public sealed partial class VehicleSystem : EntitySystem
         if (!Resolve(entity, ref entity.Comp))
             return false;
 
+        // Fish-start - разрешаем роботизированным мозгам управлять мехами с MechBrainComponent.
+        if (HasComp<Content.Shared.Silicons.Borgs.Components.BorgBrainComponent>(uid))
+        {
+            return TryComp<Content.Shared._Fish.Mech.Components.MechBrainComponent>(entity, out var mechBrain) &&
+                   mechBrain.CanInsertBrain;
+        }
+        // Fish-end
+
         if (_entityWhitelist.IsWhitelistFail(entity.Comp.OperatorWhitelist, uid))
             return false;
 
@@ -335,6 +343,11 @@ public sealed partial class VehicleSystem : EntitySystem
     {
         if (!_handBlockerQuery.TryComp(vehicle, out var handBlocker))
             return true;
+
+        // Fish-start - у мозгов нет рук, пропускаем блокировку рук для них.
+        if (HasComp<Content.Shared.Silicons.Borgs.Components.BorgBrainComponent>(operatorUid))
+            return true;
+        // Fish-end
 
         if (_virtualItem.TrySpawnUnremoveableVirtualItemInHand(
                 vehicle.Owner,

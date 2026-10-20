@@ -15,6 +15,7 @@ using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes; // Fish-Edit - прототип экшена возврата стенда
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -38,6 +39,10 @@ public sealed partial class GuardianSystem : EntitySystem
 
     [Dependency] private EntityQuery<GuardianComponent> _guardianQuery;
     [Dependency] private EntityQuery<GuardianHostComponent> _guardianHostQuery;
+
+    // Fish-Edit start - константа для экшена возврата стенда
+    private static readonly EntProtoId ActionGuardianReturn = "ActionGuardianReturn";
+    // Fish-Edit end
 
     [SubscribeLocalEvent]
     private void OnGuardianShutdown(Entity<GuardianComponent> ent, ref ComponentShutdown args)
@@ -101,6 +106,20 @@ public sealed partial class GuardianSystem : EntitySystem
         }
 
         _popup.PopupEntity(Loc.GetString("guardian-available"), host.Value, host.Value);
+        // Fish-Edit start - выдача экшена возврата стенду без дублирования
+        var existing = false;
+        foreach (var action in _action.GetActions(ent.Owner))
+        {
+            if (MetaData(action).EntityPrototype?.ID == ActionGuardianReturn.Id)
+            {
+                existing = true;
+                break;
+            }
+        }
+
+        if (!existing)
+            _action.AddAction(ent.Owner, ActionGuardianReturn);
+        // Fish-Edit end
     }
 
     [SubscribeLocalEvent]
@@ -127,9 +146,39 @@ public sealed partial class GuardianSystem : EntitySystem
         Dirty(ent);
     }
 
+    // Fish-Edit start - возврат стенда по собственному экшену и запрет взаимодействий вдали от хозяина
+    [SubscribeLocalEvent]
+    private void OnReturnAction(Entity<GuardianComponent> ent, ref GuardianReturnActionEvent args)
+    {
+        if (ent.Comp.Host == null || !_guardianHostQuery.TryComp(ent.Comp.Host, out var hostComp))
+            return;
+
+        RetractGuardian((ent.Comp.Host.Value, hostComp), (ent.Owner, ent.Comp));
+    }
+
+    [SubscribeLocalEvent]
+    private void OnInteractAttempt(Entity<GuardianComponent> ent, ref InteractionAttemptEvent args)
+    {
+        if (ent.Comp.DisableInteraction)
+        {
+            _popup.PopupClient(Loc.GetString("guardian-too-far"), ent.Owner, ent.Owner);
+            args.Cancelled = true;
+        }
+    }
+    // Fish-Edit end
+
     [SubscribeLocalEvent]
     private void OnGuardianAttackAttempt(Entity<GuardianComponent> ent, ref AttackAttemptEvent args)
     {
+        // Fish-Edit start - запрет атаки вдали от хозяина
+        if (ent.Comp.DisableInteraction)
+        {
+            _popup.PopupClient(Loc.GetString("guardian-too-far"), ent.Owner, ent.Owner);
+            args.Cancel();
+            return;
+        }
+        // Fish-Edit end
+
         if (args.Cancelled || args.Target != ent.Comp.Host)
             return;
 
@@ -163,8 +212,8 @@ public sealed partial class GuardianSystem : EntitySystem
         args.Args.Cancelled = true;
     }
 
-    [SubscribeLocalEvent]
-    private void ToggleGuardian(Entity<GuardianHostComponent> ent)
+    // [SubscribeLocalEvent] // Fish-Edit - метод вызывается напрямую, а не как обработчик события
+    public void ToggleGuardian(Entity<GuardianHostComponent> ent) // Fish-Edit - public API
     {
         if (!_guardianQuery.TryComp(ent.Comp.HostedGuardian, out var guardianComponent))
             return;
@@ -386,8 +435,25 @@ public sealed partial class GuardianSystem : EntitySystem
         if (!guardian.Comp.GuardianLoose)
             return;
 
+        // Fish-Edit start - блокировка взаимодействий стенда вместо принудительного возврата при выходе из радиуса
+        // if (!_transform.InRange(guardianXform.Coordinates, hostXform.Coordinates, guardian.Comp.DistanceAllowed))
+        //     RetractGuardian((host.Owner, host.Comp), guardian);
         if (!_transform.InRange(guardianXform.Coordinates, hostXform.Coordinates, guardian.Comp.DistanceAllowed))
-            RetractGuardian((host.Owner, host.Comp), guardian);
+        {
+            if (!guardian.Comp.DisableInteraction)
+            {
+                guardian.Comp.DisableInteraction = true;
+                Dirty(guardian);
+                _popup.PopupEntity(Loc.GetString("guardian-radius-limit"), guardian.Owner, guardian.Owner, PopupType.LargeCaution);
+            }
+        }
+        else if (guardian.Comp.DisableInteraction)
+        {
+            guardian.Comp.DisableInteraction = false;
+            Dirty(guardian);
+            _popup.PopupEntity(Loc.GetString("guardian-in-range"), guardian.Owner, guardian.Owner, PopupType.LargeCaution);
+        }
+        // Fish-Edit end
     }
 
     private void ReleaseGuardian(Entity<GuardianHostComponent> host, Entity<GuardianComponent> guardian)

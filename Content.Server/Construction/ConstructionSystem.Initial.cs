@@ -131,7 +131,7 @@ namespace Content.Server.Construction
             var pos = TransformSystem.GetMapCoordinates(user);
 
             // Fish-start
-            var userTile = _transformSystem.GetGridOrMapTilePosition(user);
+            var userTile = TransformSystem.GetGridOrMapTilePosition(user);
             foreach (var near in _lookupSystem.GetEntitiesInRange(pos, InitialConstructionNearbyRange, LookupFlags.Contained | LookupFlags.Dynamic | LookupFlags.Sundries | LookupFlags.Approximate | LookupFlags.Static))
             {
                 if (near == user)
@@ -144,7 +144,7 @@ namespace Content.Server.Construction
                 {
                     if (!HasComp<ItemComponent>(near))
                         continue;
-                    if (_transformSystem.GetGridOrMapTilePosition(near, nearXform) != userTile)
+                    if (TransformSystem.GetGridOrMapTilePosition(near, nearXform) != userTile)
                         continue;
                 }
 
@@ -341,7 +341,7 @@ namespace Content.Server.Construction
 
                             // Fish-start
                             if (TryComp(entity, out TransformComponent? insertXform) && insertXform.Anchored)
-                                _transformSystem.Unanchor(entity, insertXform);
+                                TransformSystem.Unanchor(entity, insertXform);
                             // Fish-end
 
                             if (string.IsNullOrEmpty(arbitraryStep.Store))
@@ -689,7 +689,7 @@ namespace Content.Server.Construction
             {
                 case MaterialConstructionGraphStep materialStep:
                 {
-                    var material = PrototypeManager.Index(materialStep.MaterialPrototypeId);
+                    var material = ProtoMan.Index(materialStep.MaterialPrototypeId);
                     var materialName = Loc.GetString(material.Name, ("amount", materialStep.Amount));
                     return Loc.GetString("construction-system-construct-missing-material",
                         ("amount", materialStep.Amount),

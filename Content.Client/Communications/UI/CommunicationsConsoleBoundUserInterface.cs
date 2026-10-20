@@ -102,7 +102,7 @@ public sealed partial class CommunicationsConsoleBoundUserInterface(EntityUid ow
             // var selectableAlertLevels = _alertLevel.GetSelectableAlertLevels((stationUid.Value, alertComp));
             // var canChangeAlertLevel = _alertLevel.CanChangeAlertLevel((stationUid.Value, alertComp));
             var hasAccess = HasAccess();
-            var currentAlertLevel = commsState.CurrentAlert;
+            var currentAlertLevel = commsState.CurrentAlert ?? default;
             var selectableAlertLevels = commsState.AlertLevels;
             var canChangeAlertLevel = hasAccess
                 && selectableAlertLevels != null

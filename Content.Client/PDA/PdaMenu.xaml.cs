@@ -220,7 +220,10 @@ namespace Content.Client.PDA
             // Sunrise-end
 
             var alertColor = state.PdaOwnerInfo.StationAlertColor;
-            (_alertLevel, _, _instructions) = _alert.AlertLevelData(state.PdaOwnerInfo.StationAlertLevel);
+            // Sunrise edit start - отображение основных и дополнительных кодов угрозы
+            // (_alertLevel, _, _instructions) = _alert.AlertLevelData(state.PdaOwnerInfo.StationAlertLevel);
+            UpdateAlertLevelState(state.PdaOwnerInfo);
+            // Sunrise edit end
 
             StationAlertLevelLabel.SetMarkup(Loc.GetString(
                 "comp-pda-ui-station-alert-level",

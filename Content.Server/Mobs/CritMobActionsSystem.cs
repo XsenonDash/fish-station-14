@@ -1,4 +1,4 @@
-﻿using Content.Server.Administration;
+using Content.Server.Administration;
 using Content.Server.Chat.Systems;
 using Content.Server.Ghost;
 using Content.Server.Popups;
@@ -11,7 +11,8 @@ using Content.Shared.StatusEffectNew;
 using Content.Shared.Players;
 using Robust.Server.Console;
 using Robust.Shared.Player;
-using Content.Shared.Speech.Muting;
+// Fish-edit: Дубликат using закомментирован
+// using Content.Shared.Speech.Muting;
 using Content.Shared._Fish.Achievements.Events;
 
 namespace Content.Server.Mobs;

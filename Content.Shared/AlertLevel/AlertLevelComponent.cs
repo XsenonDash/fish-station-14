@@ -10,7 +10,8 @@ namespace Content.Shared.AlertLevel;
 /// </summary>
 [RegisterComponent, NetworkedComponent]
 [AutoGenerateComponentState, AutoGenerateComponentPause]
-[Access(typeof(AlertLevelSystem))]
+// [Access(typeof(AlertLevelSystem))] // Sunrise-Edit
+[Access(typeof(AlertLevelSystem), Other = AccessPermissions.ReadWriteExecute)] // Sunrise-Edit - доступ для систем расширенных кодов тревоги и консоли связи
 public sealed partial class AlertLevelComponent : Component
 {
     /// <summary>
