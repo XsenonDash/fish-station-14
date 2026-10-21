@@ -4,7 +4,9 @@ using Content.Shared.Access.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Mech.Components;
 using Content.Shared.Popups;
+using Content.Shared.DoAfter;
 using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared._Fish.Mech.Events;
 
 namespace Content.Server.Mech.Systems;
 
@@ -16,6 +18,15 @@ public sealed partial class MechSystem
 
     private void InitializeFish()
     {
+        SubscribeLocalEvent<MechComponent, MechBrainInsertDoAfterEvent>(OnBrainInsertDoAfter);
+    }
+
+    private void OnBrainInsertDoAfter(Entity<MechComponent> ent, ref MechBrainInsertDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Handled || args.Args.Target is not { } target || args.Args.Used is not { } used)
+            return;
+
+        args.Handled = TryEnterMech(ent.AsNullable(), args.User, used);
     }
 
     private void RestoreFishBrainState(EntityUid pilot)
@@ -33,7 +44,18 @@ public sealed partial class MechSystem
         if (!HasComp<BorgBrainComponent>(args.Used))
             return false;
 
-        args.Handled = TryEnterMech(ent.AsNullable(), args.User, args.Used);
+        if (!CanEnterMech(ent.AsNullable(), args.User, args.Used, quiet: false))
+            return true;
+
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(5), new MechBrainInsertDoAfterEvent(), ent.Owner, target: ent.Owner, used: args.Used)
+        {
+            BreakOnMove = true,
+            BreakOnDamage = true,
+            NeedHand = true,
+        };
+
+        _doAfter.TryStartDoAfter(doAfterArgs);
+        args.Handled = true;
         return true;
     }
 

@@ -189,11 +189,27 @@ public sealed class MechBrainTest
         await server.WaitPost(() =>
             entMan.System<SharedInteractionSystem>().InteractUsing(user, brain, mech, map.GridCoords));
 
+        // До завершения DoAfter мозг ещё не установлен в мех.
+        await server.WaitAssertion(() =>
+        {
+            Assert.That(entMan.System<VehicleSystem>().GetOperatorOrNull(mech), Is.Null);
+            Assert.That(entMan.HasComponent<VehicleOperatorComponent>(brain), Is.False);
+        });
+
+        // Ждём 5 секунд DoAfter установки мозга.
+        var gameTiming = server.ResolveDependency<IGameTiming>();
+        var ticksToWait = (int) Math.Ceiling(5f * gameTiming.TickRate) + 5;
+        await pair.RunTicksSync(ticksToWait);
+
         await server.WaitAssertion(() =>
         {
             var pilot = entMan.System<VehicleSystem>().GetOperatorOrNull(mech);
             Assert.That(pilot, blacklisted ? Is.Null : Is.EqualTo(brain));
             Assert.That(entMan.HasComponent<VehicleOperatorComponent>(brain), Is.EqualTo(!blacklisted));
+            if (!blacklisted)
+            {
+                Assert.That(entMan.System<ActionBlockerSystem>().CanMove(mech), Is.False);
+            }
         });
 
         await server.WaitPost(() => entMan.System<MechSystem>().TryEject(mech));
