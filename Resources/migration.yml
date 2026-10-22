@@ -893,8 +893,9 @@ SpawnPointShipwreckHecate: null
 SpawnPointShipwreckTraveller: null
 SpawnMobGolemCult: null
 SpawnMobRobotMedical: null
-WindoorCommandLocked: null
-WindoorSecurityLocked: null
+# WindoorCommandLocked: null  # Fish-Edit 
+
+# WindoorSecurityLocked: null # Fish-Edit 
 SpawnMobRobotStandard: null
 OilJar`Ghee: null
 Painting`MothBigCatch: null
