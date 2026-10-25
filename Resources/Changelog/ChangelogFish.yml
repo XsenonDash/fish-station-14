@@ -1073,3 +1073,10 @@
     message: Добавлены ушки в рыбаплинк, бонусом идут кроличьи.
   id: 108
   url: https://github.com/makura-games/fish-station/pull/505
+- author: KrytoiChuvaaak
+  time: '2026-10-25T23:25:54.0000000+00:00'
+  changes:
+  - type: Tweak
+    message: Предметы в лоадауте Синего Щита теперь требуют суммарное наигранное время по всем ролям СЩ, а не только по офицеру.
+  id: 109
+  url: https://github.com/makura-games/fish-station/pull/516
