@@ -1080,3 +1080,28 @@
     message: Предметы в лоадауте Синего Щита теперь требуют суммарное наигранное время по всем ролям СЩ, а не только по офицеру.
   id: 109
   url: https://github.com/makura-games/fish-station/pull/516
+- author: KrytoiChuvaaak
+  time: '2026-10-25T23:41:45.0000000+00:00'
+  changes:
+  - type: Fix
+    message: Мозг теперь можно положить в микроволновку и вставить в MMI (раньше его нельзя было использовать ни на чём).
+  - type: Add
+    message: Мозг в микроволновке за 15 секунд теперь сразу даёт торт с мозгами.
+  id: 110
+  url: https://github.com/makura-games/fish-station/pull/519
+- author: TiFeRi
+  time: '2026-10-25T23:42:44.0000000+00:00'
+  changes:
+  - type: Tweak
+    message: Утильский шаттл снова требует ремонта, для нормальной работы.
+  id: 111
+  url: https://github.com/makura-games/fish-station/pull/561
+- author: TiFeRi
+  time: '2026-10-25T23:43:17.0000000+00:00'
+  changes:
+  - type: Remove
+    message: Отключён планетоид.
+  - type: Tweak
+    message: Увеличено количество обломков вокруг.
+  id: 112
+  url: https://github.com/makura-games/fish-station/pull/562
