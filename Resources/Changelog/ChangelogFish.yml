@@ -1059,3 +1059,10 @@
     message: Фикс карт для апстрима часть 4
   id: 106
   url: https://github.com/makura-games/fish-station/pull/555
+- author: TiFeRi
+  time: '2026-10-25T13:18:40.0000000+00:00'
+  changes:
+  - type: Tweak
+    message: Миграция сломанных штук до починки.
+  id: 107
+  url: https://github.com/makura-games/fish-station/pull/558
