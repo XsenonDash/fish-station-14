@@ -1031,3 +1031,31 @@
     message: 'Удаление карт из пула на фиксы: Ирефит, Сухарик, Оазис, Плазма, Сноуболл, Терра Исланд,'
   id: 102
   url: https://github.com/makura-games/fish-station/pull/540
+- author: TiFeRi
+  time: '2026-10-25T11:13:34.0000000+00:00'
+  changes:
+  - type: Tweak
+    message: Фикс карт для апстрима часть 1
+  id: 103
+  url: https://github.com/makura-games/fish-station/pull/552
+- author: TiFeRi
+  time: '2026-10-25T11:13:43.0000000+00:00'
+  changes:
+  - type: Tweak
+    message: Фикс карт для апстрима часть 2
+  id: 104
+  url: https://github.com/makura-games/fish-station/pull/553
+- author: TiFeRi
+  time: '2026-10-25T11:13:55.0000000+00:00'
+  changes:
+  - type: Tweak
+    message: Фикс карт для апстрима часть 3
+  id: 105
+  url: https://github.com/makura-games/fish-station/pull/554
+- author: TiFeRi
+  time: '2026-10-25T11:14:06.0000000+00:00'
+  changes:
+  - type: Tweak
+    message: Фикс карт для апстрима часть 4
+  id: 106
+  url: https://github.com/makura-games/fish-station/pull/555
