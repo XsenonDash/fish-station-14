@@ -1105,3 +1105,10 @@
     message: Увеличено количество обломков вокруг.
   id: 112
   url: https://github.com/makura-games/fish-station/pull/562
+- author: TiFeRi
+  time: '2026-10-25T23:48:49.0000000+00:00'
+  changes:
+  - type: Fix
+    message: Фиксики нюкеров
+  id: 113
+  url: https://github.com/makura-games/fish-station/pull/560
