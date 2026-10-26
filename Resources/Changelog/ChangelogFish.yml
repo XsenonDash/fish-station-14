@@ -1112,3 +1112,19 @@
     message: Фиксики нюкеров
   id: 113
   url: https://github.com/makura-games/fish-station/pull/560
+- author: NekutGit
+  time: '2026-10-25T23:58:34.0000000+00:00'
+  changes:
+  - type: Add
+    message: Добавлен ПП Томпсона калибра .40
+  - type: Add
+    message: Добавлен магазин Томпсона на 35 патронов
+  id: 114
+  url: https://github.com/makura-games/fish-station/pull/532
+  media:
+  - url: https://github.com/user-attachments/assets/290cc986-ea40-4693-8fbf-255972185228
+    description: Screenshot 2026-10-21 210211
+  - url: https://github.com/user-attachments/assets/5049a3c3-04dd-41f2-825b-85034ec5a658
+    description: Screenshot 2026-10-21 210245
+  - url: https://github.com/user-attachments/assets/5e60e492-1627-4dab-9696-df5c41eb343a
+    description: Screenshot 2026-10-21 210333
