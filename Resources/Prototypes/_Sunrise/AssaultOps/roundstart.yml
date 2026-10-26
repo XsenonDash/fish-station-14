@@ -66,7 +66,7 @@
     speciesOverride: Human
     speciesOverrideBlacklist:
     - Vox
-    - Felinid
+#    - Felinid # Fish-edit
     - Diona
     - HumanoidXeno
     - Predator
@@ -80,4 +80,4 @@
       playerRatio: 15
       range:
         min: 1
-        max: 5
+        max: 3 # Fish-edit
