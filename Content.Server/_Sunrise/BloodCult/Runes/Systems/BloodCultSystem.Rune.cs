@@ -587,6 +587,9 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             }
 
             _bloodCultRuleSystem.MakeCultist(target, rule, giveStartingItems: false);
+            // Fish-start - При конвертации новому культисту выдаётся кинжал и локатор культа
+            GiveConvertedCultistItems(target, rule);
+            // Fish-end
             _stunSystem.TryAddParalyzeDuration(target, TimeSpan.FromSeconds(2f));
             HealCultist(target);
 
@@ -1433,6 +1436,28 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             // Достаточно любой грид+тайл: станция, шаттл, планетойд экспедиции.
             return true;
         }
+
+        // Fish-start - Выдача кинжала и локатора при конвертации
+        private void GiveConvertedCultistItems(EntityUid cultist, BloodCultRuleComponent rule)
+        {
+            if (rule.CultType == null ||
+                !ProtoMan.TryIndex<BloodCultPrototype>($"{rule.CultType.Value.ToString()}Cult", out var cultPrototype))
+                return;
+
+            var coords = Transform(cultist).Coordinates;
+            _inventorySystem.TryGetSlotEntity(cultist, "back", out var backPack);
+
+            var itemsToGive = new[] { cultPrototype.DaggerProto, (EntProtoId)"BloodCultPinpointer" };
+            foreach (var itemProto in itemsToGive)
+            {
+                var item = Spawn(itemProto, coords);
+                if (backPack != null && _storageSystem.Insert(backPack.Value, item, out _))
+                    continue;
+                if (_handsSystem.TryPickupAnyHand(cultist, item))
+                    continue;
+            }
+        }
+        // Fish-end
 
         private void HealCultist(EntityUid player)
         {

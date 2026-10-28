@@ -79,14 +79,22 @@ public sealed partial class DiseaseRoleSystem : SharedDiseaseRoleSystem
                 return;
             }
 
+            // Fish-start - Защита блокирует заражение при полной защите, иначе шанс
             var protection = GetDiseaseProtectionCoefficient(args.Target);
-            if (protection < 1.0f)
+            if (protection <= 0.0f)
+            {
+                _popup.PopupEntity(Loc.GetString("disease-infect-protected"), args.Performer, args.Performer);
+                return;
+            }
+
+            if (!_random.Prob(protection))
             {
                 _popup.PopupEntity(Loc.GetString("disease-infect-protected"), args.Performer, args.Performer);
                 return;
             }
 
             OnInfect(args, 1.0f);
+            // Fish-end
 
             if (args.Handled)
             {

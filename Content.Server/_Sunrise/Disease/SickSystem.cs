@@ -165,6 +165,7 @@ public sealed partial class SickSystem : SharedSickSystem
                         {
                             solution.AddReagent(reagentId, reagents.Volume);
                         }
+                        solution.MaxVolume = reagents.MaxVolume > 0 ? reagents.MaxVolume : reagents.Volume;
 
                         _bloodstream.ChangeBloodReagents(uid, solution);
                     }
