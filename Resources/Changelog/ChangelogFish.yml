@@ -1128,3 +1128,10 @@
     description: Screenshot 2026-10-21 210245
   - url: https://github.com/user-attachments/assets/5e60e492-1627-4dab-9696-df5c41eb343a
     description: Screenshot 2026-10-21 210333
+- author: KrytoiChuvaaak
+  time: '2026-10-28T12:22:47.0000000+00:00'
+  changes:
+  - type: Tweak
+    message: Берет и халат ведущего врача теперь доступны психологу и патологоанатому, комбинезон и юбка — главному врачу и психологу. Интерн по-прежнему не получает вещи ведущего врача.
+  id: 115
+  url: https://github.com/makura-games/fish-station/pull/529
