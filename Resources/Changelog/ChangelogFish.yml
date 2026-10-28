@@ -1149,3 +1149,10 @@
     message: Портативные консоли «NT-блоки», «Космический злодей» и «Сапёр» теперь можно купить в автомате «Безобидные развлечения».
   id: 117
   url: https://github.com/makura-games/fish-station/pull/556
+- author: KrytoiChuvaaak
+  time: '2026-10-28T12:29:24.0000000+00:00'
+  changes:
+  - type: Add
+    message: Таракамоли получили способность летать, как Нианы.
+  id: 118
+  url: https://github.com/makura-games/fish-station/pull/564
