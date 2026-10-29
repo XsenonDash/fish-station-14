@@ -241,7 +241,7 @@
       reagents:
       - ReagentId: RedRum
         Quantity: 50
-    duration: 30
+    # duration: 30 # Fish-edit: дубликат ключа
   - type: Tag
     tags:
     - FitsHardsuit

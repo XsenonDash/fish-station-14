@@ -223,6 +223,24 @@ public sealed partial class SsdIconPrototype : StatusIconPrototype, IInheritingP
     public bool Abstract { get; private set; }
 }
 
+// Fish-start: To remove - функционал разумной болезни
+/// <summary>
+/// StatusIcons for the Sick indicator
+/// </summary>
+[Prototype]
+public sealed partial class SickIconPrototype : StatusIconPrototype, IInheritingPrototype
+{
+    /// <inheritdoc />
+    [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<SickIconPrototype>))]
+    public string[]? Parents { get; private set; }
+
+    /// <inheritdoc />
+    [NeverPushInheritance]
+    [AbstractDataField]
+    public bool Abstract { get; private set; }
+}
+// Fish-end
+
 [Serializable, NetSerializable]
 public enum StatusIconLocationPreference : byte
 {

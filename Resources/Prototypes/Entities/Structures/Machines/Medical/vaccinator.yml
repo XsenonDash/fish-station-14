@@ -15,16 +15,17 @@
       shader: unshaded
       map: ["enum.DiseaseMachineVisualLayers.IsOn"]
   - type: Appearance
+  # Fish-start: To remove - функционал разумной болезни
   - type: DiseaseMachineVisuals
     idleState: icon
     runningState: running
-    # Fish-start
   - type: Vaccinator
     mixDuration: 10
     mixingSound:
       path: /Audio/Machines/spinning.ogg
       params:
         volume: -4
+  # Fish-end
   - type: ReactionMixer
     reactionTypes:
     - Vaccinator
@@ -34,7 +35,6 @@
         whitelist:
           tags:
             - CentrifugeCompatible
-    # Fish-end
   - type: Machine
     board: VaccinatorMachineCircuitboard
   - type: ContainerContainer
