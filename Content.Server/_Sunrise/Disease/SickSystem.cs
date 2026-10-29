@@ -188,6 +188,10 @@ public sealed partial class SickSystem : SharedSickSystem
                     );
                     _ui.SetUiState(component.owner, DiseaseInfoUiKey.Key, state);
                     component.Inited = true;
+                    // Fish-start - синхронизируем инициализацию инфекции на клиент
+                    Dirty(uid, component);
+                    RaiseNetworkEvent(new UpdateInfectionsEvent(GetNetEntity(uid)));
+                    // Fish-end
                 }
                 else
                 {

@@ -20,6 +20,16 @@ public sealed partial class SickSystem : EntitySystem
 
         SubscribeLocalEvent<SickComponent, GetStatusIconsEvent>(OnGetStatusIconsGlobal);
         SubscribeNetworkEvent<UpdateInfectionsEvent>(OnUpdateInfect);
+        SubscribeNetworkEvent<ClientInfectEvent>(OnClientInfect); // Fish-edit
+    }
+
+    private void OnClientInfect(ClientInfectEvent args) // Fish-edit
+    {
+        var uid = GetEntity(args.Infected);
+        if (Exists(uid))
+        {
+            EnsureComp<SickComponent>(uid).Inited = true;
+        }
     }
 
     private void OnUpdateInfect(UpdateInfectionsEvent args)
@@ -38,10 +48,9 @@ public sealed partial class SickSystem : EntitySystem
         if (_mobState.IsDead(uid) || HasComp<ActiveNPCComponent>(uid))
             return;
 
-        if (!component.Inited)
-            return;
-
+        // Fish-start - отображаем иконку болезни сразу при наличии компонента
         var iconId = "SmartDiseaseIcon";
+        // Fish-end
         args.StatusIcons.Add(_prototype.Index<SickIconPrototype>(iconId));
     }
 }

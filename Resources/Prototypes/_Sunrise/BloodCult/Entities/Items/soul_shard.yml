@@ -23,8 +23,6 @@
     - type: MobState
       allowedStates:
         - Alive
-    - type: BlockMovement
-      blockInteraction: false
     - type: PointLight
       color: Red
       radius: 2

@@ -373,7 +373,10 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             };
 
             if (component.InvokersMinCount > 1 || component.GatherInvokers)
+            {
                 cultists = GatherCultists(uid, component.CultistGatheringRange);
+                cultists.Add(args.User); // Fish-edit: инициатор всегда включен в число вызывающих
+            }
 
             if (cultists.Count < component.InvokersMinCount)
             {
@@ -1357,10 +1360,10 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             _entityManager.SpawnEntity(rune, coords);
         }
 
-        // Fish-start
+        // Fish-start - спавн камня души при жертвоприношении
         /// <summary>
-        /// Attempts to create a soul shard from the sacrifice target, transferring the victim's mind into it.
-        /// Returns false if the target has no mind or the mind is already in another living body.
+        /// Creates a soul shard from the sacrifice target, transferring the victim's mind into it if valid,
+        /// and gibs the target.
         /// </summary>
         private bool SpawnShard(EntityUid target)
         {
@@ -1375,11 +1378,8 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             if (_entityManager.TryGetComponent<MindContainerComponent>(target, out var mindComponent) && mindComponent.HasMind)
             {
                 targetMindId = mindComponent.Mind;
-                if (targetMindId.HasValue) targetMind = _entityManager.GetComponent<MindComponent>(targetMindId.Value);
-            }
-            else
-            {
-                return false;
+                if (targetMindId.HasValue)
+                    targetMind = _entityManager.GetComponent<MindComponent>(targetMindId.Value);
             }
 
             if (targetMindId != null && targetMind != null)
@@ -1390,13 +1390,10 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 {
                     if (_entityManager.HasComponent<MobStateComponent>(currentEntity) && !_entityManager.HasComponent<GhostComponent>(currentEntity))
                     {
-                        return false;
+                        targetMindId = null;
+                        targetMind = null;
                     }
                 }
-            }
-            else
-            {
-                return false;
             }
         // Fish-end
 
