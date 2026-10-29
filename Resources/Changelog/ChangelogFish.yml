@@ -1156,3 +1156,10 @@
     message: Таракамоли получили способность летать, как Нианы.
   id: 118
   url: https://github.com/makura-games/fish-station/pull/564
+- author: ВАШЕ_ИМЯ
+  time: '2026-10-29T11:43:44.0000000+00:00'
+  changes:
+  - type: Add
+    message: Добавлен вещмешок горничной командования
+  id: 119
+  url: https://github.com/makura-games/fish-station/pull/504
