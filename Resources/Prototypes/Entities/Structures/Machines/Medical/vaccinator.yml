@@ -18,6 +18,7 @@
   - type: DiseaseMachineVisuals
     idleState: icon
     runningState: running
+    # Fish-start
   - type: Vaccinator
     mixDuration: 10
     mixingSound:
@@ -33,6 +34,7 @@
         whitelist:
           tags:
             - CentrifugeCompatible
+    # Fish-end
   - type: Machine
     board: VaccinatorMachineCircuitboard
   - type: ContainerContainer
