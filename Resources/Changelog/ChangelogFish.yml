@@ -1233,3 +1233,10 @@
     message: Фикс цели на мутаген, добавление в нее еще двух баночек.
   id: 125
   url: https://github.com/makura-games/fish-station/pull/575
+- author: Kaiten
+  time: '2026-10-30T22:59:37.0000000+00:00'
+  changes:
+  - type: Add
+    message: Апстрим 30.10.2026
+  id: 126
+  url: https://github.com/makura-games/fish-station/pull/579
