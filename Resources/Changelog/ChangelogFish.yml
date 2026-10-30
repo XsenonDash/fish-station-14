@@ -1240,3 +1240,12 @@
     message: Апстрим 30.10.2026
   id: 126
   url: https://github.com/makura-games/fish-station/pull/579
+- author: dan4ikk3
+  time: '2026-10-30T23:22:44.0000000+00:00'
+  changes:
+  - type: Add
+    message: НШЦК захотел завести себе персональную кошко-девочку и теперь рассматривает заявки на горничную центрального командования.
+  - type: Tweak
+    message: Теперь на сервисные и медецинские роли ЦК можно зайти без ВЛа.
+  id: 127
+  url: https://github.com/makura-games/fish-station/pull/498
