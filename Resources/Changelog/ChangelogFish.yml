@@ -1189,3 +1189,12 @@
     message: Зимняя куртка капитана больше не даёт защиты от урона и от стамины.
   id: 121
   url: https://github.com/makura-games/fish-station/pull/528
+- author: KrytoiChuvaaak
+  time: '2026-10-30T15:28:08.0000000+00:00'
+  changes:
+  - type: Add
+    message: У админ-призрака появилась кнопка самозапрета на взаимодействие с миром.
+  - type: Add
+    message: Имя админ-призрака теперь подписывается должностью администратора, в том числе в LOOC.
+  id: 122
+  url: https://github.com/makura-games/fish-station/pull/537
