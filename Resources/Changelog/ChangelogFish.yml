@@ -1182,3 +1182,10 @@
     message: Все роли синего щита получили новый комплект имплантов как и у Офицера.
   id: 120
   url: https://github.com/makura-games/fish-station/pull/572
+- author: KrytoiChuvaaak
+  time: '2026-10-30T15:25:56.0000000+00:00'
+  changes:
+  - type: Tweak
+    message: Зимняя куртка капитана больше не даёт защиты от урона и от стамины.
+  id: 121
+  url: https://github.com/makura-games/fish-station/pull/528
